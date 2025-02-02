@@ -60,7 +60,7 @@ descriptions:
   - cat: dummy
     desc: "Just some placeholder posts, lorem ipsum and the rest."
     
-  - cat: aws
+  - cat: AWS
     desc: "my aws learning outputs here"
 
 # Social icons and sharing options
