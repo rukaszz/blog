@@ -103,9 +103,9 @@ export PATH=$VCPKG_ROOT:$PATH
                 "-o", 
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "-I", 
-                "/home/lucas/treelization/cpp_web_scraper/vcpkg_installed/x64-linux/include0", 
+                "/home/yourProject/vcpkg_installed/x64-linux/include0", 
                 "-L", 
-                "/home/lucas/treelization/cpp_web_scraper/vcpkg_installed/x64-linux/lib", 
+                "/home/yourProject/vcpkg_installed/x64-linux/lib", 
                 "-lyour_library_name"
             ], 
             "group": {
@@ -175,9 +175,9 @@ vscodeのc拡張機能で使用する設定ファイルです．includeファイ
         {
             "name": "Linux",
             "includePath": [
-                "/home/lucas/treelization/cpp_web_scraper/**",
+                "/home/yourProject/**",
                 "/usr/include",
-                "/home/lucas/treelization/cpp_web_scraper/vcpkg_installed/x64-linux/include/**", 
+                "/home/yourProject/vcpkg_installed/x64-linux/include/**", 
                 "${workspaceFolder}/**"
             ], 
             "defines": [],
@@ -200,19 +200,19 @@ Cのプログラミング環境を整えるための設定で，エディタの�
 {
     "folders": [
         {
-            "path": "/home/lucas/treelization/cpp_web_scraper"
+            "path": "/home/yourProject"
         }
     ], 
     "settings": {
         "cmake.configureSettings": {
-            "CMAKE_TOOLCHAIN_FILE": "/home/lucas/treelization/cpp_web_scraper/vcpkg/scripts/buildsystems/vcpkg.cmake"
+            "CMAKE_TOOLCHAIN_FILE": "/home/yourProject/vcpkg/scripts/buildsystems/vcpkg.cmake"
         }, 
         "cmake.configureArgs": [
-            "-DCMAKE_TOOLCHAIN_FILR=/home/lucas/treelization/cpp_web_scraper/vcpkg/scripts/buildsystems/vcpkg.cmake"
+            "-DCMAKE_TOOLCHAIN_FILR=/home/yourProject/vcpkg/scripts/buildsystems/vcpkg.cmake"
         ]
     },
     "code-runner.executorMap": {
-        "cpp": "/home/lucas/treelization/cpp_web_scraper/build/cpp_web_scraper"
+        "cpp": "/home/yourProject/build/cpp_web_scraper"
     }, 
     "C_Cpp.intelliSenseEngine": "default",
     "editor.formatOnSave": true,
@@ -313,16 +313,16 @@ Cmake関連，マジでわからん．
 cmake_minimum_required(VERSION 3.1.0)
 project(cpp_web_scraper VERSION 0.1.0)
 
-set(CMAKE_TOOLCHAIN_FILE "/home/lucas/treelization/cpp_web_scraper/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
+set(CMAKE_TOOLCHAIN_FILE "/home/yourProject/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_PREFIX_PATH "/home/lucas/treelization/cpp_web_scraper/vcpkg_installed/x64-linux")
+set(CMAKE_PREFIX_PATH "/home/yourProject/vcpkg_installed/x64-linux")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # assign include directory of project
-include_directories(/home/lucas/treelization/cpp_web_scraper/vcpkg_installed/x64-linux)
+include_directories(/home/yourProject/vcpkg_installed/x64-linux)
 
-link_directories(/home/lucas/treelization/cpp_web_scraper/vcpkg_installed/x64-linux)
+link_directories(/home/yourProject/vcpkg_installed/x64-linux)
 
 find_package(fmt REQUIRED)
 find_package(cpr REQUIRED)
@@ -344,8 +344,8 @@ target_link_libraries(cpp_web_scraper PRIVATE LibXml2::LibXml2)
 
 target_link_libraries(cpp_web_scraper PRIVATE spdlog::spdlog)
 
-target_include_directories(cpp_web_scraper PRIVATE /home/lucas/treelization/cpp_web_scraper/vcpkg_installed/x64-linux/include)
-target_link_directories(cpp_web_scraper PRIVATE /home/lucas/treelization/cpp_web_scraper/vcpkg_installed/x64-linux/lib)
+target_include_directories(cpp_web_scraper PRIVATE /home/yourProject/vcpkg_installed/x64-linux/include)
+target_link_directories(cpp_web_scraper PRIVATE /home/yourProject/vcpkg_installed/x64-linux/lib)
 
 ```
 
@@ -425,9 +425,9 @@ tasks.json
                 "-o", 
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "-I", 
-                "/home/lucas/treelization/cpp_web_scraper/vcpkg_installed/x64-linux/include0", 
+                "/home/yourProject/vcpkg_installed/x64-linux/include0", 
                 "-L", 
-                "/home/lucas/treelization/cpp_web_scraper/vcpkg_installed/x64-linux/lib", 
+                "/home/yourProject/vcpkg_installed/x64-linux/lib", 
                 "-lyour_library_name"
             ], 
             "group": {
@@ -447,16 +447,16 @@ CMakeLists.txt
 cmake_minimum_required(VERSION 3.1.0)
 project(cpp_web_scraper VERSION 0.1.0)
 
-set(CMAKE_TOOLCHAIN_FILE "/home/lucas/treelization/cpp_web_scraper/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
+set(CMAKE_TOOLCHAIN_FILE "/home/yourProject/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_PREFIX_PATH "/home/lucas/treelization/cpp_web_scraper/vcpkg_installed/x64-linux")
+set(CMAKE_PREFIX_PATH "/home/yourProject/vcpkg_installed/x64-linux")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # assign include directory of project
-include_directories(/home/lucas/treelization/cpp_web_scraper/vcpkg_installed/x64-linux)
+include_directories(/home/yourProject/vcpkg_installed/x64-linux)
 
-link_directories(/home/lucas/treelization/cpp_web_scraper/vcpkg_installed/x64-linux)
+link_directories(/home/yourProject/vcpkg_installed/x64-linux)
 
 find_package(fmt REQUIRED)
 find_package(cpr REQUIRED)
@@ -478,8 +478,8 @@ target_link_libraries(cpp_web_scraper PRIVATE LibXml2::LibXml2)
 
 target_link_libraries(cpp_web_scraper PRIVATE spdlog::spdlog)
 
-target_include_directories(cpp_web_scraper PRIVATE /home/lucas/treelization/cpp_web_scraper/vcpkg_installed/x64-linux/include)
-target_link_directories(cpp_web_scraper PRIVATE /home/lucas/treelization/cpp_web_scraper/vcpkg_installed/x64-linux/lib)
+target_include_directories(cpp_web_scraper PRIVATE /home/yourProject/vcpkg_installed/x64-linux/include)
+target_link_directories(cpp_web_scraper PRIVATE /home/yourProject/vcpkg_installed/x64-linux/lib)
 
 ```
 
