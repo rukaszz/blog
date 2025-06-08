@@ -21,12 +21,19 @@ layout: default
   <div class="post-categories">
   {% if page.categories.size > 0 %}in {% for cat in page.categories %}
     {% if site.jekyll-archives %}
-    <a href="{{ site.baseurl }}/category/{{ cat }}">{{ cat | capitalize }}</a>{% if forloop.last == false %}, {% endif %}
+    <a href="{{ site.baseurl }}/category/{{ cat }}">{{ cat | capitalize }}</a>
     {% else %}
-    <a href="{{ site.baseurl }}/posts/#{{ cat }}">{{ cat | capitalize }}</a>{% if forloop.last == false %}, {% endif %}
+    <a href="{{ site.baseurl }}/posts/{{ cat | slugify }}">{{ cat | capitalize }}</a>
     {% endif %}
+    {% if forloop.last == false %}, {% endif %}
   {% endfor %}{% endif %}
   </div>
+  
+  {% for cat in page.categories %}
+    {% if site.categories[cat] and site.categories[cat].desc %}
+      <p class="desc"><em>{{ site.categories[cat].desc }}</em></p>
+    {% endif %}
+  {% endfor %}
 </section>
 
 <article class="post-content">

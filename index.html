@@ -15,7 +15,7 @@ pagination:
 </div>
 
 <div class="wrapper">
-<ul class="post-list">
+<!-- <ul class="post-list">
   {% for post in paginator.posts %}
   <li>
     <h2>
@@ -40,6 +40,26 @@ pagination:
   {% if forloop.last == false %}
   <hr>
   {% endif %}
+  {% endfor %}
+</ul> -->
+
+<!-- カテゴリ別リンク -->
+<h2>カテゴリ一覧</h2>
+<ul>
+  {% for category in site.categories %}
+    <li>
+      <a href="{{ site.baseurl }}/posts/">{{ category[0] }}</a>  
+    </li>
+  {% endfor %}
+</ul>
+
+<!-- 最新記事リスト -->
+<h2>最新記事</h2>
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{post.title}}</a> - {{ post.date | date: "%Y-%m-%d" }}
+    </li>
   {% endfor %}
 </ul>
 

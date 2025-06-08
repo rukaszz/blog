@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dockerのはじめ方</title>
+  <meta name="description" content="Dockerの基本設定">
+  
+  <meta name="author" content="Rukaszz">
+  <meta name="copyright" content="&copy; Rukaszz 2025">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="Dockerの基本設定" />
+  <meta property="og:url" content="http://localhost:4000/posts/Docker">
+  <meta property="og:site_name" content="ファウンデーション" />
+  <meta property="og:title" content="Dockerのはじめ方" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/logo.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dockerのはじめ方">
+  <meta name="twitter:description" content="Dockerの基本設定">
+  <meta name="twitter:image" content="http://localhost:4000/assets/logo.png">
+  <meta name="twitter:url" content="http://localhost:4000/posts/Docker">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/posts/Docker">
+	<link rel="alternate" type="application/rss+xml" title="ファウンデーション" href="http://localhost:4000/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="ファウンデーション">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+	<li class="nav-link"><a href="/typography/">Typography</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">Dockerのはじめ方</h1>
+      <p class="info">by <strong>rukaszz</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">May 11, 2025</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/Docker">Docker</a>
+    
+    
+  
+  </div>
+  
+  
+    
+  
+</section>
+
+<article class="post-content">
+  <h1 id="dockerの基本設定">Dockerの基本設定</h1>
+
+<p>Ubuntu環境でDockerをインストールしてから起動，停止までをとりあえずまとめた．</p>
+
+<h2 id="dockerを起動">Dockerを起動</h2>
+
+<h3 id="インストール">インストール</h3>
+
+<p>いつものコマンドでインストールできます．</p>
+
+<pre><code class="language-Bash">sudo apt update
+sudo apt install docker.io
+</code></pre>
+
+<h3 id="dockerサービスの起動">Dockerサービスの起動</h3>
+
+<p>インストールできたらDockerサービスを起動する．
+なお，Dockerはシステムレベルのアクセスが必要であり，Dockerデーモンを使用してコンテナを管理する都合上，デーモンとのやり取りに管理者権限(sudo)が必要です．</p>
+
+<pre><code class="language-Bash">sudo systemctl start docker
+sudo systemctl enable docker
+</code></pre>
+
+<h3 id="dockerコンテナの起動">Dockerコンテナの起動</h3>
+
+<p>Docker Hubからコンテナを取得し，コンテナ起動する．
+次のコマンドでは「nginx」イメージを使用しています．</p>
+
+<p>※nginx：軽量なWebサーバとリバースプロキシとして使われるOSS．
+※nginxイメージ：nginxが提供するDocker Hubのイメージ．簡単に言えばコンテナ内部で適切にリクエストを転送してくれるサーバを共に立ち上げる感じ？</p>
+
+<pre><code class="language-Bash">sudo docker run -d --name myContainer nginx
+</code></pre>
+
+<h3 id="コンテナに入る">コンテナに入る</h3>
+
+<p>起動したコンテナが正しく動作しているかを確認する：</p>
+
+<pre><code class="language-Bash">sudo docker ps
+</code></pre>
+
+<p>コンテナにアクセスするには，「exec」コマンドを使用する：</p>
+
+<pre><code class="language-Bash">sudo docker exec -it myContainer /bin/bash
+</code></pre>
+
+<p>「-it」はコンテナへの入出力が出力されるようになるコマンド？</p>
+
+<p>「/bin/bash」はバッシュを起動するためのコマンドです．この記述が無くてもめちゃくちゃ軽量なイメージでもなければシェルは存在しているはずなので，</p>
+
+<pre><code class="language-Shell">bash
+</code></pre>
+
+<p>と記述すれば「/bin/bash」と同等の状態になるはず．</p>
+
+<h3 id="dockerの終了">Dockerの終了</h3>
+
+<p>Dockerの起動までを確認したので，上記の逆の手順で終了まで追っていきます．
+まずコンテナからでるには「exit」コマンドを使います．「ctrl + D」でも出来るはず．</p>
+
+<pre><code class="language-Bash">exit
+</code></pre>
+
+<p>コンテナの動作を止めるには，</p>
+
+<pre><code class="language-Bash">sudo docker stop myContainer
+</code></pre>
+
+<p>コンテナを削除するには次のコマンドを使います．ただし，コンテナを止めていないと(基本的には)削除できません．</p>
+
+<pre><code class="language-Bash">sudo docker rm myContainer
+</code></pre>
+
+<p>ついでにDockerデーモンを停止させる場合は：</p>
+
+<pre><code class="language-Bash">sudo systemctl stop docker
+</code></pre>
+
+<p>別に停止させなくて良いのであれば：</p>
+
+<pre><code class="language-Bash">sudo systemctl disable docker
+</code></pre>
+
+<p>おそらくDockerデーモンを停止しても，再度やり取りをするため「docker.socket」は生きたままになります．</p>
+
+<h2 id="dockerの環境構築">Dockerの環境構築</h2>
+
+<p>起動したDockerがすっからかんなので，環境を構築しないといけません．
+公式がだしているイメージを使うのが一番簡単です．</p>
+
+<h3 id="例python環境">例：Python環境</h3>
+
+<pre><code class="language-Bash">sudo docker run -it --name pythonContainer python:latest /bun/bash
+</code></pre>
+
+<p>これでコンテナ内で「pip」コマンドが使えるはずです．</p>
+
+<h3 id="複数の言語環境の構築">複数の言語環境の構築</h3>
+
+<p>Dockerを使って複数の言語の環境をセットアップしたいことはままあるかと思います．
+このような場合は一括でビルドするためにDockerfileを使います．</p>
+
+<div class="language-Dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ベースイメージ：ubuntu</span>
+<span class="k">FROM</span><span class="s"> ubuntu:latest</span>
+
+<span class="c"># 必要なパッケージなどをインストール</span>
+<span class="k">RUN </span>apt-get update <span class="o">&amp;&amp;</span> apt <span class="nb">install</span> <span class="nt">-y</span> build-essential <span class="se">\
+</span>    python3 python3-pip <span class="se">\
+</span>    rustc cargo
+
+<span class="c"># 環境の確認</span>
+<span class="k">RUN </span>gcc <span class="nt">--version</span> <span class="o">&amp;&amp;</span> python3 <span class="nt">--version</span> <span class="o">&amp;&amp;</span> rustc <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>aptは現状Dockerでは推奨されておらず，「apt-get」を使います．
+また，「WARNING: apt does not have a stable CLI interface. Use with caution in scripts.」というワーニングが出現することがあります．
+これは「apt」がCLIに向いてない的なワーニングなので，無視しても処理は進みます．
+問題は次のエラーです．</p>
+
+<p>「E: Unable to locate package XXX」というエラーが出現し，コンテナをbuildできません．
+読めばわかる通り，パッケージの場所が見つからないとなっています．
+私の場合は，「apt-get update」で「apt-get」そのものを更新すると解消しました．
+「apt-get update」でapt-get自体をupdateしないとエラーとなることがあります．
+また，それ以外の原因もあるそうです：<a href="https://qiita.com/arila/items/1cd0245e29c38c7d7091">qiita.com/arila/items/1cd0245e29c38c7d7091</a></p>
+
+<p>この場合は「/etc/resolv.conf」を編集してGoogle Public DNSのIPアドレスなどを追加することになるでしょう．
+上記のサイトを参考にした「resolv.conf」の編集内容の一例です：</p>
+
+<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Generated by resolvconf
+</span><span class="n">search</span> <span class="n">flets</span>-<span class="n">east</span>.<span class="n">jp</span> <span class="n">iptvf</span>.<span class="n">jp</span>
+<span class="n">nameserver</span> <span class="m">2400</span>:<span class="m">4053</span>:<span class="m">121</span>:<span class="n">e400</span>:<span class="n">a10</span>:<span class="m">86</span><span class="n">ff</span>:<span class="n">fef3</span>:<span class="m">87</span><span class="n">e0</span>
+<span class="n">nameserver</span> <span class="m">8</span>.<span class="m">8</span>.<span class="m">8</span>.<span class="m">8</span>
+<span class="n">nameserver</span> <span class="m">8</span>.<span class="m">8</span>.<span class="m">4</span>.<span class="m">4</span>
+<span class="n">nameserver</span> <span class="m">1</span>.<span class="m">1</span>.<span class="m">1</span>.<span class="m">1</span>
+<span class="n">nameserver</span> <span class="m">208</span>.<span class="m">67</span>.<span class="m">222</span>.<span class="m">222</span>  <span class="c"># OpenDNS address
+</span></code></pre></div></div>
+
+<h3 id="dockerfileでビルド">Dockerfileでビルド</h3>
+
+<p>Dockerfileを作成したら，イメージを作ります．</p>
+
+<pre><code class="language-Bash">sudo docker build -it myImage
+</code></pre>
+
+<p>これに時間がかかります．
+終わったら上記の手順に従い，コンテナを作成し実行します．</p>
+
+<pre><code class="language-Bash">sudo docker run -d --name myContainer myImage
+</code></pre>
+
+<h3 id="一括でコンテナを起動管理するdocker-compose">一括でコンテナを起動・管理する(docker-compose)</h3>
+
+<p>複数のコンテナを管理するために，都度Dockerfileなどを作成し，各々のディレクトリでゴニョゴニョするのは面倒です．
+一括で管理するための設定ファイルがDockerには備わっています．
+docker-compose.ymlはYAML形式のファイルで記述され，コマンドを1つずつ打つこと無くDockerイメージのビルド，各コンテナの起動などが行えるツールです．
+なので基本的にはタブではなくスペース2つで段落を分けます．</p>
+
+<p>これまではDockerfileを記述してそれを基にイメージの作成，コンテナの作成，起動などを行っっていましたが，おそらく一般的にはdocker-composeを利用してビルドから起動，停止までを実行します．</p>
+
+<p>基本的な構文としては，次のようになると思います．各種設定値は各々の開発環境と相談して適宜決定する必要があります：</p>
+
+<pre><code class="language-YAML"># docker-composeのバージョンの指定(省略可能)：原則は3，1や2はサポートが終わっている古いもの
+version: "3.3"  
+services: # サービス(およびコンテナ)に関する記述
+  app: # これはappというサービスに関するコンテナの設定
+    image: python3.9 # 使用するイメージを記述
+    container_name: myContainer # コンテナの名称(省略すると自動で振られる)
+    ports: 
+      - 8000:80 # コンテナのポートのマッピング
+    volumes: 
+      - /home/app:/app # ホストのディレクトリ(/home/app)を，コンテナの/appへマウントする
+    environment: # 環境変数などを設定する(DBの接続情報とか)
+      - MYSQL_ROOT_PW: password
+      - MYDATABASE: yourDatabase
+      - USERNAME: userName
+      - MYSQL_PW: password
+    depends_on: # 依存関係にあるコンテナの記述
+      - db # appというサービスはdbというサービスが起動してから起動される
+  db: # DB用のコンテナの設定
+  # ...
+volumes: 
+  app: # 永続化するストレージの設定
+</code></pre>
+
+<p>このようにdocker-compose.ymlを作成したら，あとはコマンドを叩くだけです．</p>
+
+<pre><code class="language-Bash">sudo docker-compose up # イメージがなければビルドする
+sudo docker-compose up -d # コンテナをバックグラウンドで起動(detatch)
+sudo docker-compose up --build # イメージをビルドしてコンテナを作成・起動する
+</code></pre>
+
+<p>もろもろ確認：</p>
+
+<pre><code class="language-Bash">sudo docker ps # 起動しているコンテナ(-aで停止のものも含めてだせる)
+sudo docker-conpose log serviceName # 特定のサービスのログ
+</code></pre>
+
+<p>起動：</p>
+
+<pre><code class="language-Bash">sudo docker-compose sudo docker run -d myContainer
+</code></pre>
+
+
+</article>
+
+
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">ファウンデーション</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+	<li class="nav-link"><a href="/typography/">Typography</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:rukaszzq@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">rukaszzq@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://github.com/rukaszz" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">bencentra</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">日々の学びを出力するブログです．
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

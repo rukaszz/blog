@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ファウンデーション</title>
+    <description>日々の学びを出力するブログです．
+</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 08 Jun 2025 17:24:23 +0900</pubDate>
+    <lastBuildDate>Sun, 08 Jun 2025 17:24:23 +0900</lastBuildDate>
+    <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>gitの備忘録的ノート</title>
+        <description>&lt;h1 id=&quot;gitについて&quot;&gt;Gitについて&lt;/h1&gt;
+
+&lt;h2 id=&quot;gitとは&quot;&gt;Gitとは&lt;/h2&gt;
+
+&lt;p&gt;バージョン管理システムの一種．簡単に言えばある状態でのディレクトリのファイルの情報を管理し，変更があればそれを追跡してくれるシステムです．これを用いればある時点でのバックアップファイルを取る手間をなくせます．&lt;/p&gt;
+
+&lt;h2 id=&quot;gitでレポジトリを切る&quot;&gt;Gitでレポジトリを切る&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;gitアカウントを作る&lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Mon, 02 Jun 2025 04:25:52 +0900</pubDate>
+        <link>http://localhost:4000/posts/git</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/git</guid>
+        
+        <category>environment</category>
+        
+        
+        <category>git</category>
+        
+      </item>
+    
+      <item>
+        <title>Dockerのはじめ方</title>
+        <description>&lt;h1 id=&quot;dockerの基本設定&quot;&gt;Dockerの基本設定&lt;/h1&gt; &lt;p&gt;Ubuntu環境でDockerをインストールしてから起動，停止までをとりあえずまとめた．&lt;/p&gt; &lt;h2 id=&quot;dockerを起動&quot;&gt;Dockerを起動&lt;/h2&gt; &lt;h3 id=&quot;インストール&quot;&gt;インストール&lt;/h3&gt; &lt;p&gt;いつものコマンドでインストールできます．&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;sudo apt update sudo apt install docker.io &lt;/code&gt;&lt;/pre&gt; &lt;h3 id=&quot;dockerサービスの起動&quot;&gt;Dockerサービスの起動&lt;/h3&gt; &lt;p&gt;インストールできたらDockerサービスを起動する． なお，Dockerはシステムレベルのアクセスが必要であり，Dockerデーモンを使用してコンテナを管理する都合上，デーモンとのやり取りに管理者権限(sudo)が必要です．&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;sudo systemctl start docker sudo systemctl enable docker...</description>
+        <pubDate>Sun, 11 May 2025 04:25:52 +0900</pubDate>
+        <link>http://localhost:4000/posts/Docker</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/Docker</guid>
+        
+        
+        <category>Docker</category>
+        
+      </item>
+    
+      <item>
+        <title>C++ の環境構築</title>
+        <description>&lt;h1 id=&quot;vscodeでcコーディング環境を構築する&quot;&gt;vscodeでC++コーディング環境を構築する&lt;/h1&gt; &lt;p&gt;Ubuntu環境でC++コーディング環境を構築する方法メモ．メモ書き程度ですが，参考になれば幸いです．&lt;/p&gt; &lt;h2 id=&quot;1-準備&quot;&gt;1. 準備&lt;/h2&gt; &lt;p&gt;そもそも単純なC++環境であれば，Linux系OSでの環境構築は簡単だと思います．単に標準ライブラリ(iostreamなど)を使う場合は，vscodeに以下の拡張機能があれば，不自由なくコンパイルから実行まで行けるはずです．&lt;/p&gt; &lt;ul&gt; &lt;li&gt;C/C++(Microsoft)：シンタックスハイライトや文法ミスを指摘してくれる&lt;/li&gt; &lt;li&gt;Code Runner(Jun Han)：vscode右上辺りに実行ボタンとか出現する&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;今回は，外部ライブラリ(boostなど)を使用したい場合を想定しています．vcpkgを用いてパッケージをインストールした場合を解説します．&lt;/p&gt; &lt;p&gt;vcpkgはMicrosoft社開発のパッケージマネージャで，簡単にライブラリをインストールして管理できます．これとCMakeを利用して，実行ファイルをBuildする方法を見ていきます．必要な拡張機能は，上記のものに加えて次の3点です：&lt;/p&gt; &lt;ul&gt; &lt;li&gt;CMake Tools(Microsoft)：CMakeを使用してビルドする際に，vcpkgを通じてインストールしたライブラリを組み込める&lt;/li&gt; &lt;li&gt;CMake(twxs)：CMakeファイル用のシンタックスハイライトなどの機能を提供します&lt;/li&gt; &lt;li&gt;C++デバッグ系拡張機能：IDEのようなデバッグを行えるような拡張機能(調査中)&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;ひとまずこれら拡張機能をインストールしたら，vscodeを再起動しておきましょう．&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-command&quot;&gt;Ctrl + Shift + P &lt;/code&gt;&lt;/pre&gt; &lt;p&gt;でコマンドパレットを起動して，”Developer:...</description>
+        <pubDate>Fri, 02 May 2025 04:25:52 +0900</pubDate>
+        <link>http://localhost:4000/posts/cpp</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/cpp</guid>
+        
+        <category>environment</category>
+        
+        
+        <category>cpp</category>
+        
+      </item>
+    
+      <item>
+        <title>AWS用語集</title>
+        <description>&lt;h1 id=&quot;aws-cfl-用語集1-2で統合&quot;&gt;AWS CFL 用語集(1, 2で統合)&lt;/h1&gt; &lt;h2 id=&quot;用語集&quot;&gt;用語集&lt;/h2&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;インスタンス：AWSで作成，管理される仮想サーバのこと．EC2サービスを通じてプロビジョニングされ，様々な用途に利用される．具体的には，ウェブアプリケーションやデータベース運用などがある．インスタンスの増減が簡単に行えるので，リソースの最適化が容易である．&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;EC2(Elastic Compute Cloud)：クラウド環境で仮想サーバを提供するサービス．ユーザはEC2を利用して必要なだけの仮想マシン(インスタンス)を作成し，様々なアプリケーションを実行できる．スケーラビリティ，多様なインスタンスのタイプ，セキュリティなどの特長がある．&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;VPC：「Virtual Private Cloud」の略で，AWS上でプライベートな仮想ネットワークを作成するサービス．この仮想ネットワークをサブネットという．VPCを用いると，ユーザは自分のネットワークの設定を完全に管理下における．&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;S3：AWSのSimple Storage Service(S3)のこと．スケーラブルなストレージサービスで，データをオブジェクトとして保存し，バケットと呼ばれるコンテナに整理する．高可用性(複数リージョンへのレプリケーション)，スケーラビリティ(無制限な容量拡張)，セキュリティ(データ暗号化)などの特徴を持つ．&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;EBS：Elastic Block Storeのこと．高性能かつ耐久性があるストレージで，ボリューム単位で管理され，スナップショットで容易に復元され，複数のアベイラビリティゾーンにレプリケートされて安定した運用が出来る．EC2に接続され，高いパフォーマンスと永続性を兼ね備えるが，基本的に1つのEC2インスタンスにしかアタッチできない．&lt;/p&gt;...</description>
+        <pubDate>Sun, 26 Jan 2025 04:25:52 +0900</pubDate>
+        <link>http://localhost:4000/posts/aws</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/aws</guid>
+        
+        
+        <category>AWS</category>
+        
+      </item>
+    
+  </channel>
+</rss>
