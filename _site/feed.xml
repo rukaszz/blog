@@ -6,26 +6,29 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 08 Jun 2025 17:24:23 +0900</pubDate>
-    <lastBuildDate>Sun, 08 Jun 2025 17:24:23 +0900</lastBuildDate>
+    <pubDate>Sat, 05 Jul 2025 18:06:27 +0900</pubDate>
+    <lastBuildDate>Sat, 05 Jul 2025 18:06:27 +0900</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
     
       <item>
+        <title>gitとjelyllでブログを始める</title>
+        <description>&lt;h1 id=&quot;gitとjekyllでブログを始める&quot;&gt;Gitとjekyllでブログを始める&lt;/h1&gt; &lt;h2 id=&quot;jekyllとは&quot;&gt;Jekyllとは&lt;/h2&gt; &lt;p&gt;Jekyll(ジキル)とは静的なサイトを生成するRubyのツール．サイト構成のための要素(カテゴリの列挙など)を，HTMLやMarkdownで記述して実行することで，Webサイトを構成するHTMLファイルを一式で出力する．&lt;/p&gt; &lt;p&gt;外枠は有志作成のテンプレートが複数あり，ブログの作者としてはメモ的に記述したMarkdownファイルを多少手直しするだけでブログとして出力できる非常にありがたいツールである．&lt;/p&gt; &lt;h3 id=&quot;静的サイト&quot;&gt;静的サイト&lt;/h3&gt; &lt;p&gt;静的と動的という言葉があり，静的とはユーザの操作に対してサイトのコンテンツを生成したりすることが無いということで，例えばコメントフォームにコメントを書いて投稿すると，サイト下部にコメントが出現するというのはわかりやすい動的な要素です．&lt;/p&gt; &lt;p&gt;静的サイトはユーザがサーバへリクエストした内容(ここではHTMLファイル)をそのまま返すだけのサイトと言えます．基本的にJekyllで作成するサイトは，ユーザのリクエストに対してデータベースからデータを返すような処理はしません．&lt;/p&gt; &lt;h3 id=&quot;jekyllによる自動生成&quot;&gt;Jekyllによる自動生成&lt;/h3&gt; &lt;p&gt;HTMLファイルにHTMLを1行ずつ書くことでWebページは作れます．情報系の授業でWebページを作成された経験を持つ人も多いと思います．しかし手作業で大量のHTMLソースを記述するのは大変ですし，繰り返し要素などはいわゆるfor文などで自動で作りたいと思うでしょう．&lt;/p&gt; &lt;p&gt;JekyllはJekyllを用意できる環境があれば，サーバに一式のWebページの設定や投稿内容を記述したファイルを上げれば，それだけでブログのようなページが作れます．すごくざっくりと言えば，次のような手順で外部にWebページを公開できます：&lt;/p&gt; &lt;ol&gt; &lt;li&gt;AWSのサービスへログインする(AWS マネジメントコンソール)&lt;/li&gt; &lt;li&gt;AWSのEC2サービスからインスタンスを起動&lt;/li&gt; &lt;li&gt;ruby，Jekyllをコマンド叩いて必要なソフトウェアをインストール&lt;/li&gt; &lt;li&gt;Nginxなどでhttp(ポート80)でアクセスできるように設定(できれば)&lt;/li&gt; &lt;li&gt;Jekyllのテンプレートや投稿用ファイルの配置&lt;/li&gt; &lt;li&gt;外部からアクセス可能(Nginxで設定すれば)&lt;/li&gt; &lt;/ol&gt; &lt;p&gt;Jekyllの構成の利点は，1つのディレクトリにまとめられるほど手軽な構成であること，基本的にテキストベースなのでgitなどのバージョン管理が容易であることがあげられます．なお，画像データは必要です．&lt;/p&gt; &lt;p&gt;欠点としては，動的な構成(コメントフォーム)などがJekyll単体では実装できないこと．Jekyllの環境が必要なことくらいでしょう．&lt;/p&gt; &lt;h3 id=&quot;jekyllとgit&quot;&gt;JekyllとGit&lt;/h3&gt; &lt;p&gt;Gitで管理が容易という話はしましたが，Github上でブログを公開できるサービスがGithub上に用意されています．詳しくは次節で話しますが，gitのリポジトリで管理しながらブログも外部へ公開できるのは，非常に手軽で強力な利点でしょう．&lt;/p&gt; &lt;h2 id=&quot;gitでレポジトリを切る&quot;&gt;Gitでレポジトリを切る&lt;/h2&gt;...</description>
+        <pubDate>Mon, 09 Jun 2025 04:25:52 +0900</pubDate>
+        <link>http://localhost:4000/posts/git</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/git</guid>
+        
+        <category>environment</category>
+        
+        <category>blog</category>
+        
+        
+        <category>git</category>
+        
+      </item>
+    
+      <item>
         <title>gitの備忘録的ノート</title>
-        <description>&lt;h1 id=&quot;gitについて&quot;&gt;Gitについて&lt;/h1&gt;
-
-&lt;h2 id=&quot;gitとは&quot;&gt;Gitとは&lt;/h2&gt;
-
-&lt;p&gt;バージョン管理システムの一種．簡単に言えばある状態でのディレクトリのファイルの情報を管理し，変更があればそれを追跡してくれるシステムです．これを用いればある時点でのバックアップファイルを取る手間をなくせます．&lt;/p&gt;
-
-&lt;h2 id=&quot;gitでレポジトリを切る&quot;&gt;Gitでレポジトリを切る&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;gitアカウントを作る&lt;/li&gt;
-  &lt;li&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-</description>
+        <description>&lt;h1 id=&quot;gitについて&quot;&gt;Gitについて&lt;/h1&gt; &lt;h2 id=&quot;gitとは&quot;&gt;Gitとは&lt;/h2&gt; &lt;p&gt;バージョン管理システム(Version Control System；VCS)の一種．簡単に言えばある状態でのディレクトリのファイルの情報を管理し，変更があればそれを追跡してくれるシステムです．これを用いれば管理されているファイル群の変更履歴が追跡され，過去の修正が参照できるようになります．つまり，ある時点でのバックアップファイルを取る手間をなくせます．&lt;/p&gt; &lt;p&gt;分散型のバージョン管理システムであり，有名なSubVersion(SVN)が中央集権的なバージョン管理システムなのに対して，分散型であるという点が異なっております．&lt;/p&gt; &lt;h3 id=&quot;バージョン管理システムvcs&quot;&gt;バージョン管理システム(VCS)&lt;/h3&gt; &lt;p&gt;重複しますが，ファイルやディレクトリのバージョン管理をするためのシステムです．変更管理用のサーバなどにSVNやGitなどが置かれると，そこへソースコードなどをアップロードします．すると大勢の人間が参照できるようになります．&lt;/p&gt; &lt;p&gt;VCSを使わずに，共有用ファイルサーバでプロジェクトを管理するとします．ここで考えられるのは，変更をどのように管理するかという問題です．&lt;/p&gt; &lt;ul&gt; &lt;li&gt;誰も彼もがソースコードを触ってしまうとそもそもどれを現在のバージョンとすればよいか&lt;/li&gt; &lt;li&gt;過去用のバックアップデータをどれだけ作ればよいか&lt;/li&gt; &lt;li&gt;過去のデータが編集されてしまったら，どうすればよいか&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;VCSはこのような問題を解決する1つの手段です． 開発者達をクライアントとして，VCSのサーバとやり取りをすると，それぞれがファイルへ加えた変更をVCSが管理してくれます．このように変更履歴を管理すると，上記の問題が解決できます．&lt;/p&gt; &lt;ul&gt; &lt;li&gt;誰も彼もがソースコードを触ってしまう→VCSのサーバに上がっている最新の修正のものが常に正となる&lt;/li&gt; &lt;li&gt;過去用のバックアップデータをどれだけ作ればよいか→変更履歴からどんな修正がされたかを追える(ディレクトリのまるごとバックアップをしなくて良い)&lt;/li&gt; &lt;li&gt;過去のデータが編集されてしまったら→変更履歴で管理されそもそも過去のデータが容易に変更できない&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;VCSの利点は使っていけばすぐに理解できると思います&lt;/p&gt; &lt;h2 id=&quot;gitでレポジトリを切る&quot;&gt;Gitでレポジトリを切る&lt;/h2&gt; &lt;ol&gt; &lt;li&gt;gitアカウントを作る&lt;/li&gt; &lt;li&gt;&lt;/li&gt;...</description>
         <pubDate>Mon, 02 Jun 2025 04:25:52 +0900</pubDate>
         <link>http://localhost:4000/posts/git</link>
         <guid isPermaLink="true">http://localhost:4000/posts/git</guid>
@@ -57,6 +60,8 @@
         <guid isPermaLink="true">http://localhost:4000/posts/cpp</guid>
         
         <category>environment</category>
+        
+        <category>cpp</category>
         
         
         <category>cpp</category>

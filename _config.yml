@@ -94,6 +94,8 @@ categories:
     desc: "Docker learning outputs here"
   git:
     desc: "git learning outputs here"
+  rust:
+    desc: "rust learning outputs here"
 
 # Social icons and sharing options
 #

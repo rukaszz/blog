@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Rust + WASM環境構築メモ：「Hello world!」を表示するまで</title>
+  <meta name="description" content="日々の学びを出力するブログです．
+">
+  
+  <meta name="author" content="Rukaszz">
+  <meta name="copyright" content="&copy; Rukaszz 2025">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="日々の学びを出力するブログです．
+" />
+  <meta property="og:url" content="http://localhost:4000/posts/rust">
+  <meta property="og:site_name" content="ファウンデーション" />
+  <meta property="og:title" content="Rust + WASM環境構築メモ：「Hello world!」を表示するまで" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/logo.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Rust + WASM環境構築メモ：「Hello world!」を表示するまで">
+  <meta name="twitter:description" content="日々の学びを出力するブログです．
+">
+  <meta name="twitter:image" content="http://localhost:4000/assets/logo.png">
+  <meta name="twitter:url" content="http://localhost:4000/posts/rust">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/posts/rust">
+	<link rel="alternate" type="application/rss+xml" title="ファウンデーション" href="http://localhost:4000/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="ファウンデーション">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+	<li class="nav-link"><a href="/typography/">Typography</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">Rust + WASM環境構築メモ：「Hello world!」を表示するまで</h1>
+      <p class="info">by <strong>rukaszz</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">July 5, 2025</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/rust">Rust</a>
+    
+    
+  
+  </div>
+  
+  
+    
+  
+</section>
+
+<article class="post-content">
+  <h1 id="rust--webassembly本">rust + WebAssembly本</h1>
+
+<h2 id="概要">概要</h2>
+
+<p>参考書籍：RustとWebAssemblyによるゲーム開発(第1版)</p>
+
+<h3 id="目的">目的</h3>
+
+<p>上記の参考書籍に従って環境構築をしていたら詰まったので，解消方法を備忘録的なメモとして記述する．</p>
+
+<h2 id="設定についての注意点">設定についての注意点</h2>
+
+<h3 id="書籍の設定">書籍の設定</h3>
+
+<p>プロジェクトの初期化：</p>
+
+<pre><code class="language-Bash">mkdir myProject
+cd myProject
+npm init rust-webpack
+</code></pre>
+
+<p>実行：</p>
+
+<pre><code class="language-Bash">npm run start
+</code></pre>
+
+<p>書籍に載っているエラーが生じたので，書籍の対処法を実施：</p>
+
+<pre><code class="language-Bash">curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+</code></pre>
+
+<p>エラーの対処は次節で解説する．</p>
+
+<p>Rustエディションの更新については，次のようにCargo.tomlを編集した．</p>
+
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># You must change these to your own details.</span>
+<span class="nn">[package]</span>
+<span class="py">name</span> <span class="p">=</span> <span class="s">"rust-webpack-template"</span>
+<span class="py">description</span> <span class="p">=</span> <span class="s">"My super awesome Rust, WebAssembly, and Webpack project!"</span>
+<span class="py">version</span> <span class="p">=</span> <span class="s">"0.1.0"</span>
+<span class="py">authors</span> <span class="p">=</span> <span class="p">[</span><span class="s">"You &lt;you@example.com&gt;"</span><span class="p">]</span>
+<span class="py">categories</span> <span class="p">=</span> <span class="nn">["wasm"]</span>
+<span class="py">readme</span> <span class="p">=</span> <span class="s">"README.md"</span>
+<span class="py">edition</span> <span class="p">=</span> <span class="s">"2021"</span>
+
+<span class="nn">[lib]</span>
+<span class="py">crate-type</span> <span class="p">=</span> <span class="nn">["cdylib"]</span>
+
+<span class="nn">[profile.release]</span>
+<span class="c"># This makes the compiled code faster and smaller, but it makes compiling slower,</span>
+<span class="c"># so it's only enabled in release mode.</span>
+<span class="py">lto</span> <span class="p">=</span> <span class="kc">true</span>
+
+<span class="nn">[features]</span>
+<span class="c"># If you uncomment this line, it will enable `wee_alloc`:</span>
+<span class="c">#default = ["wee_alloc"]</span>
+
+<span class="nn">[dependencies]</span>
+<span class="c"># The `wasm-bindgen` crate provides the bare minimum functionality needed</span>
+<span class="c"># to interact with JavaScript.</span>
+<span class="py">wasm-bindgen</span> <span class="p">=</span> <span class="s">"0.2.78"</span>
+
+<span class="c"># `wee_alloc` is a tiny allocator for wasm that is only ~1K in code size</span>
+<span class="c"># compared to the default allocator's ~10K. However, it is slower than the default</span>
+<span class="c"># allocator, so it's not enabled by default.</span>
+<span class="nn">wee_alloc</span> <span class="o">=</span> <span class="p">{</span> <span class="py">version</span> <span class="p">=</span> <span class="s">"0.4.2"</span><span class="p">,</span> <span class="py">optional</span> <span class="p">=</span> <span class="kc">true</span> <span class="p">}</span>
+
+<span class="c"># The `web-sys` crate allows you to interact with the various browser APIs,</span>
+<span class="c"># like the DOM.</span>
+<span class="nn">[dependencies.web-sys]</span>
+<span class="py">version</span> <span class="p">=</span> <span class="s">"0.3.55"</span>
+<span class="py">features</span> <span class="p">=</span> <span class="nn">["console"]</span>
+
+<span class="c"># The `console_error_panic_hook` crate provides better debugging of panics by</span>
+<span class="c"># logging them with `console.error`. This is great for development, but requires</span>
+<span class="c"># all the `std::fmt` and `std::panicking` infrastructure, so it's only enabled</span>
+<span class="c"># in debug mode.</span>
+<span class="nn">[target."cfg(debug_assertions)".dependencies]</span>
+<span class="py">console_error_panic_hook</span> <span class="p">=</span> <span class="s">"0.1.7"</span>
+
+<span class="c"># These crates are used for running unit tests.</span>
+<span class="nn">[dev-dependencies]</span>
+<span class="py">wasm-bindgen-test</span> <span class="p">=</span> <span class="s">"0.3.28"</span>
+<span class="py">futures</span> <span class="p">=</span> <span class="s">"0.3.18"</span>
+<span class="py">js-sys</span> <span class="p">=</span> <span class="s">"0.3.55"</span>
+<span class="py">wasm-bindgen-futures</span> <span class="p">=</span> <span class="s">"0.4.28"</span>
+</code></pre></div></div>
+
+<h3 id="エラーへの対処npm環境整理">エラーへの対処：npm環境整理</h3>
+
+<pre><code class="language-Bash">npm run start
+</code></pre>
+
+<p>書籍に従って上記コマンドを実行してもコンパイルに失敗する(2025/07/05現在)．
+原因としては，まず私の環境の問題であった．npmだけでは不完全で，nvmによるバージョン管理をしてnpmなどnode.jsを最新化して修復した．</p>
+
+<pre><code class="language-Bash">~/myProject$ curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+=&gt; Downloading nvm from git to '/home/.nvm'
+=&gt; Cloning into '/home/.nvm'...
+remote: Enumerating objects: 382, done.
+remote: Counting objects: 100% (382/382), done.
+remote: Compressing objects: 100% (325/325), done.
+remote: Total 382 (delta 43), reused 179 (delta 29), pack-reused 0 (from 0)
+Receiving objects: 100% (382/382), 385.06 KiB | 2.26 MiB/s, done.
+Resolving deltas: 100% (43/43), done.
+* (HEAD detached at FETCH_HEAD)
+  master
+=&gt; Compressing and cleaning up git repository
+
+=&gt; Appending nvm source string to /home/.bashrc
+=&gt; Appending bash_completion source string to /home/.bashrc
+internal/modules/cjs/loader.js:638
+    throw err;
+    ^
+
+Error: Cannot find module 'node:path'
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:636:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:562:25)
+    at Module.require (internal/modules/cjs/loader.js:692:17)
+    at require (internal/modules/cjs/helpers.js:25:18)
+    at Object.&lt;anonymous&gt; (/usr/local/lib/node_modules/npm/lib/cli.js:10:18)
+    at Module._compile (internal/modules/cjs/loader.js:778:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+=&gt; Close and reopen your terminal to start using nvm or run the following to use it now:
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] &amp;&amp; \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] &amp;&amp; \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+~/myProject$ source ~/.bashrc
+~/myProject$ nvm use node
+Now using node v24.0.2 (npm v11.3.0)
+~/myProject$ npm -v
+11.3.0
+</code></pre>
+
+<p>これでnvmのインストールが完了し，npmのバージョンも上がった．改めて「npm install webpack@latest」を実行．</p>
+
+<p>脆弱性に関するエラーが生じていた：</p>
+
+<pre><code class="language-Bash">47 packages are looking for funding
+  run `npm fund` for details
+
+16 vulnerabilities (4 moderate, 12 high)
+</code></pre>
+
+<p>これは「npm audit fix –force」を行って解消した．(sudoは不要のはず)</p>
+
+<h3 id="エラーへの対処packagejsonの整備">エラーへの対処：package.jsonの整備</h3>
+
+<p>次に「npm run start」を行うとエラーが変化した：</p>
+
+<pre><code class="language-Bash">~/myProject$ npm run start
+
+&gt; rust-webpack-template@1.0.0 start
+&gt; rimraf dist pkg &amp;&amp; webpack-dev-server --open -d
+
+[webpack-cli] Error: Option '-d, --devtool &lt;value&gt;' argument missing
+[webpack-cli] Run 'webpack --help' to see available commands and options
+</code></pre>
+
+<p>これはまず，run startで何が起きているかを見ないといけない：</p>
+
+<p><strong>package.json</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You &lt;you@example.com&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rust-webpack-template"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"build"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rimraf dist pkg &amp;&amp; webpack"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rimraf dist pkg &amp;&amp; webpack-dev-server --open -d source-map"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cargo test &amp;&amp; wasm-pack test --headless"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"devDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"@wasm-tool/wasm-pack-plugin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^1.1.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"copy-webpack-plugin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^5.0.3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rimraf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^3.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"webpack"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^5.99.8"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"webpack-cli"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^6.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"webpack-dev-server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^5.2.1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"```sh npm install ```"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webpack.config.js"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"directories"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tests"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISC"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>このstartの部分で，npm run startのときに実行するコマンドの詳細が書かれている．
+大本では，「”start”: “rimraf dist pkg &amp;&amp; webpack-dev-server –open -d”」となっており，-dの引数の後にsource-mapが無いためにエラーになっているとエラーメッセージから推測できる．なので追加した．
+また，webpack.config.jsにもsource-mapの記述を追加している．</p>
+
+<h3 id="エラーへの対処webpackconfigjsの整備">エラーへの対処：webpack.config.jsの整備</h3>
+
+<p>次に生じたエラーはこれである：</p>
+
+<pre><code class="language-Bash">~/myProject$ npm run start
+
+&gt; rust-webpack-template@1.0.0 start
+&gt; rimraf dist pkg &amp;&amp; webpack-dev-server --open -d source-map
+
+[webpack-cli] Invalid options object. Dev Server has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'contentBase'. These properties are valid:
+   object { allowedHosts?, bonjour?, client?, compress?, devMiddleware?, headers?, historyApiFallback?, host?, hot?, ipc?, liveReload?, onListening?, open?, port?, proxy?, server?, app?, setupExitSignals?, setupMiddlewares?, static?, watchFiles?, webSocketServer? }
+
+</code></pre>
+
+<p>このエラーの原因は，webpack-dev-serverのlatest-versionがv4以降の場合，contentBaseオプションが削除されているからである．
+sontentBaseを使っているのが，参考書籍を基に進めていった時の初期状態であると推測して，contentBaseの代替表現を使用した．
+参考：<a href="https://qiita.com/chocomint_t/items/4bc57945bce081922582">contentBase</a></p>
+
+<p><strong>webpack.config.js</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">path</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">CopyPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">copy-webpack-plugin</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">WasmPackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@wasm-tool/wasm-pack-plugin</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">experiments</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">webpack</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">dist</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="dl">"</span><span class="s2">dist</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">mode</span><span class="p">:</span> <span class="dl">"</span><span class="s2">production</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">devtool</span><span class="p">:</span> <span class="dl">"</span><span class="s2">source-map</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 追加部分</span>
+  <span class="na">entry</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">index</span><span class="p">:</span> <span class="dl">"</span><span class="s2">./js/index.js</span><span class="dl">"</span>
+  <span class="p">},</span>
+  <span class="na">output</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="nx">dist</span><span class="p">,</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="dl">"</span><span class="s2">[name].js</span><span class="dl">"</span>
+  <span class="p">},</span>
+  <span class="na">devServer</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">static</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">directory</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="dl">"</span><span class="s2">dist</span><span class="dl">"</span><span class="p">),</span>  <span class="c1">// 追加：contentBaseの代替表現</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span>
+    <span class="k">new</span> <span class="nx">CopyPlugin</span><span class="p">([</span>
+      <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="dl">"</span><span class="s2">static</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">]),</span>
+
+    <span class="k">new</span> <span class="nx">WasmPackPlugin</span><span class="p">({</span>
+      <span class="na">crateDirectory</span><span class="p">:</span> <span class="nx">__dirname</span><span class="p">,</span>
+    <span class="p">}),</span>
+  <span class="p">]</span>
+<span class="p">};</span>
+
+</code></pre></div></div>
+
+<p>次にこんなエラーが生じた：</p>
+
+<pre><code class="language-Bash">ERROR in ./pkg/index_bg.wasm 1:0
+Module parse failed: Unexpected character '' (1:0)
+The module seem to be a WebAssembly module, but module is not flagged as WebAssembly module for webpack.
+BREAKING CHANGE: Since webpack 5 WebAssembly is not enabled by default and flagged as experimental feature.
+You need to enable one of the WebAssembly experiments via 'experiments.asyncWebAssembly: true' (based on async modules) or 'experiments.syncWebAssembly: true' (like webpack 4, deprecated).
+For files that transpile to WebAssembly, make sure to set the module type in the 'module.rules' section of the config (e. g. 'type: "webassembly/async"').
+(Source code omitted for this binary file)
+ @ ./pkg/index.js 1:0-40 4:15-19 5:0-21
+ @ ./js/index.js
+</code></pre>
+
+<p>上記のエラーメッセージを基にwebpack.config.jsに記述を追加した(webpack 5 以降、WebAssembly はデフォルトでは有効になっておらず、実験的な機能扱いのフラグが立っている)：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">experiments</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">asyncWebAssembly</span><span class="p">:</span> <span class="kc">true</span> <span class="c1">// 実際はここだけ -&gt; 実験的WebAssemblyの</span>
+  <span class="p">},</span> 
+  <span class="na">mode</span><span class="p">:</span> <span class="dl">"</span><span class="s2">production</span><span class="dl">"</span><span class="p">,</span>
+<span class="err">…</span>
+
+</code></pre></div></div>
+
+<p>以上を設定すると，コンパイルが通った．</p>
+
+<h3 id="rust--wasm-の初期画面canvas">rust + wasm の初期画面(canvas)</h3>
+
+<p>以上の設定を行って，npmをrunさせるとようやくコンパイルが通りました．．</p>
+
+<pre><code class="language-Bash">~/myProject$ npm run start
+
+&gt; rust-webpack-template@1.0.0 start
+&gt; rimraf dist pkg &amp;&amp; webpack-dev-server --open -d source-map
+
+🧐  Checking for wasm-pack...
+
+✅  wasm-pack is installed at /home/.cargo/bin/wasm-pack. 
+
+ℹ️  Compiling your crate in release mode...
+
+&lt;i&gt; [webpack-dev-server] Project is running at:
+&lt;i&gt; [webpack-dev-server] Loopback: http://localhost:8080/, http://[::1]:8080/
+&lt;i&gt; [webpack-dev-server] On Your Network (IPv4): http://XX.XX.XX.XX:8080/
+&lt;i&gt; [webpack-dev-server] Content not from webpack is served from '/home/myProject/dist' directory
+[INFO]: 🎯  Checking for the Wasm target...
+[INFO]: 🌀  Compiling to Wasm...
+warning: Found `debug_assertions` in `target.'cfg(...)'.dependencies`. This value is not supported for selecting dependencies and will not work as expected. To learn more visit https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#platform-specific-dependencies
+    Finished `release` profile [optimized] target(s) in 0.08s
+&lt;i&gt; [webpack-dev-middleware] wait until bundle finished: /
+[INFO]: ⬇️  Installing wasm-bindgen...
+[INFO]: Optimizing wasm binaries with `wasm-opt`...
+[INFO]: Optional fields missing from Cargo.toml: 'repository', 'license'. These are not necessary, but recommended
+[INFO]: ✨   Done in 0.81s
+[INFO]: 📦   Your wasm pkg is ready to publish at /home/myProject/pkg.
+✅  Your crate has been correctly compiled
+
+(node:202752) [DEP_WEBPACK_COMPILATION_ASSETS] DeprecationWarning: Compilation.assets will be frozen in future, all modifications are deprecated.
+BREAKING CHANGE: No more changes should happen to Compilation.assets after sealing the Compilation.
+	Do changes to assets earlier, e. g. in Compilation.hooks.processAssets.
+	Make sure to select an appropriate stage from Compilation.PROCESS_ASSETS_STAGE_*.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+assets by path *.js 61 KiB
+  asset index.js 58.4 KiB [emitted] [minimized] (name: index) 2 related assets
+  asset 605.js 2.58 KiB [emitted] [minimized] 1 related asset
+asset dc4e3d4c10ad1359dbaa.module.wasm 20.7 KiB [emitted] [immutable]
+asset index.html 179 bytes [emitted]
+runtime modules 33.5 KiB 16 modules
+orphan modules 33.4 KiB [orphan] 4 modules
+cacheable modules 113 KiB (javascript) 20.7 KiB (webassembly)
+  modules by path ./node_modules/ 109 KiB
+    modules by path ./node_modules/webpack-dev-server/client/ 84.8 KiB 4 modules
+    modules by path ./node_modules/webpack/hot/*.js 5.17 KiB
+      ./node_modules/webpack/hot/dev-server.js 1.94 KiB [built] [code generated]
+      + 3 modules
+    ./node_modules/events/events.js 14.5 KiB [built] [code generated]
+    ./node_modules/ansi-html-community/index.js 4.16 KiB [built] [code generated]
+  modules by path ./pkg/ 4.25 KiB (javascript) 20.7 KiB (webassembly)
+    ./pkg/index.js 167 bytes [built] [code generated]
+    ./pkg/index_bg.wasm 120 bytes (javascript) 20.7 KiB (webassembly) [built] [code generated]
+    ./pkg/index_bg.js 3.97 KiB [built] [code generated]
+  ./js/index.js 48 bytes [built] [code generated]
+webpack 5.99.8 compiled successfully in 3481 ms
+&lt;i&gt; [webpack-dev-middleware] wait until bundle finished: /index.js
+assets by status 20.7 KiB [cached] 1 asset
+asset index.js 58.4 KiB [emitted] [minimized] (name: index) 2 related assets
+asset 605.js 2.58 KiB [emitted] [minimized] 1 related asset
+runtime modules 33.5 KiB 16 modules
+orphan modules 33.4 KiB [orphan] 4 modules
+cacheable modules 113 KiB (javascript) 20.7 KiB (webassembly)
+  modules by path ./node_modules/ 109 KiB
+    modules by path ./node_modules/webpack-dev-server/client/ 84.8 KiB 4 modules
+    modules by path ./node_modules/webpack/hot/*.js 5.17 KiB
+      ./node_modules/webpack/hot/dev-server.js 1.94 KiB [built] [code generated]
+      + 3 modules
+    ./node_modules/events/events.js 14.5 KiB [built] [code generated]
+    ./node_modules/ansi-html-community/index.js 4.16 KiB [built] [code generated]
+  modules by path ./pkg/ 4.25 KiB (javascript) 20.7 KiB (webassembly)
+    ./pkg/index.js 167 bytes [built] [code generated]
+    ./pkg/index_bg.wasm 120 bytes (javascript) 20.7 KiB (webassembly) [built] [code generated]
+    ./pkg/index_bg.js 3.97 KiB [built] [code generated]
+  ./js/index.js 48 bytes [built] [code generated]
+webpack 5.99.8 compiled successfully in 1900 ms
+
+</code></pre>
+
+<p><img src="/assets/image/rustdone_compile.png" alt="compiled successfully" /></p>
+
+<p>rustはコンパイルを通すのが大変(まあ今回はほとんどrust関係ないですが……)．</p>
+
+<p>今回は以上です．</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/environment">environment</a>,&nbsp;<a href="/tag/rust">rust</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">ファウンデーション</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+	<li class="nav-link"><a href="/typography/">Typography</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:rukaszzq@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">rukaszzq@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://github.com/rukaszz" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">bencentra</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">日々の学びを出力するブログです．
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

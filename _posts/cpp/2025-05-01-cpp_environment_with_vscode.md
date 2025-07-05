@@ -4,7 +4,7 @@ title:  "C++ の環境構築"
 date:   2025-05-01T14:25:52-05:00
 author: rukaszz
 categories: [cpp]
-tags: [environment]
+tags: [environment, cpp]
 permalink: /posts/cpp
 ---
 
