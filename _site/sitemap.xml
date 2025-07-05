@@ -21,6 +21,10 @@
 <lastmod>2025-06-09T04:25:52+09:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/posts/rust</loc>
+<lastmod>2025-07-05T08:25:52+09:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/posts/aws</loc>
 </url>
 <url>
@@ -57,6 +61,9 @@
 <loc>http://localhost:4000/tag/blog/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/tag/rust/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/category/aws/</loc>
 </url>
 <url>
@@ -69,7 +76,16 @@
 <loc>http://localhost:4000/category/git/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/category/rust/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/2025/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/2025/07/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/2025/07/05/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/2025/06/</loc>

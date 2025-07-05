@@ -6,9 +6,25 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 05 Jul 2025 18:06:27 +0900</pubDate>
-    <lastBuildDate>Sat, 05 Jul 2025 18:06:27 +0900</lastBuildDate>
+    <pubDate>Sat, 05 Jul 2025 18:35:45 +0900</pubDate>
+    <lastBuildDate>Sat, 05 Jul 2025 18:35:45 +0900</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>Rust + WASM環境構築メモ：「Hello world!」を表示するまで</title>
+        <description>&lt;h1 id=&quot;rust--webassembly本&quot;&gt;Rust + WebAssembly本&lt;/h1&gt; &lt;h2 id=&quot;概要&quot;&gt;概要&lt;/h2&gt; &lt;p&gt;参考書籍：RustとWebAssemblyによるゲーム開発(第1版)&lt;/p&gt; &lt;h3 id=&quot;目的&quot;&gt;目的&lt;/h3&gt; &lt;p&gt;上記の参考書籍に従って環境構築をしていたら詰まったので，解消方法を備忘録的なメモとして記述する．&lt;/p&gt; &lt;h2 id=&quot;設定についての注意点&quot;&gt;設定についての注意点&lt;/h2&gt; &lt;h3 id=&quot;書籍の設定&quot;&gt;書籍の設定&lt;/h3&gt; &lt;p&gt;プロジェクトの初期化：&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;mkdir myProject cd myProject npm init rust-webpack &lt;/code&gt;&lt;/pre&gt; &lt;p&gt;実行：&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;npm run start &lt;/code&gt;&lt;/pre&gt;...</description>
+        <pubDate>Sat, 05 Jul 2025 08:25:52 +0900</pubDate>
+        <link>http://localhost:4000/posts/rust</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/rust</guid>
+        
+        <category>environment</category>
+        
+        <category>rust</category>
+        
+        
+        <category>rust</category>
+        
+      </item>
     
       <item>
         <title>gitとjelyllでブログを始める</title>

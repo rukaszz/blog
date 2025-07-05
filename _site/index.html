@@ -159,6 +159,16 @@
 
 	
 
+	
+
+	
+
+	
+
+	
+
+	
+
 
       </ul>
     </nav>
@@ -180,6 +190,28 @@
 
 <div class="wrapper">
 <!-- <ul class="post-list">
+  
+  <li>
+    <h2>
+      <a class="post-link" href="/posts/rust">Rust + WASM環境構築メモ：「Hello world!」を表示するまで</a>
+    </h2>
+    <section class="post-excerpt" itemprop="description">
+      <p>Rust + WebAssembly本 概要 参考書籍：RustとWebAssemblyによるゲーム開発(第1版) 目的 上記の参考書籍に従って環境構築をしていたら詰まったので，解消方法を備忘録的なメモとして記述する． 設定についての注意点 書籍の設定 プロジェクトの初期化： mkdir myProject cd myProject npm init rust-webpack 実行： npm run start 書籍に載っているエラーが生じたので，書籍の対処法を実施： curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh エラーの対処は次節で解説する． Rustエディションの更新については，次のようにCargo.tomlを編集した． # You must change these to your own details. [package] name = "rust-webpack-template" description = "My super awesome Rust, WebAssembly, and...</p>
+    </section>
+    <section class="post-meta">
+      <div class="post-date">July 5, 2025</div>
+      <div class="post-categories">
+      in 
+        
+        <a href="/category/rust">Rust</a>
+        
+      
+      </div>
+    </section>
+  </li>
+  
+  <hr>
+  
   
   <li>
     <h2>
@@ -266,28 +298,6 @@
     </section>
   </li>
   
-  <hr>
-  
-  
-  <li>
-    <h2>
-      <a class="post-link" href="/posts/aws">AWS用語集</a>
-    </h2>
-    <section class="post-excerpt" itemprop="description">
-      <p>AWS CFL 用語集(1, 2で統合) 用語集 インスタンス：AWSで作成，管理される仮想サーバのこと．EC2サービスを通じてプロビジョニングされ，様々な用途に利用される．具体的には，ウェブアプリケーションやデータベース運用などがある．インスタンスの増減が簡単に行えるので，リソースの最適化が容易である． EC2(Elastic Compute Cloud)：クラウド環境で仮想サーバを提供するサービス．ユーザはEC2を利用して必要なだけの仮想マシン(インスタンス)を作成し，様々なアプリケーションを実行できる．スケーラビリティ，多様なインスタンスのタイプ，セキュリティなどの特長がある． VPC：「Virtual Private Cloud」の略で，AWS上でプライベートな仮想ネットワークを作成するサービス．この仮想ネットワークをサブネットという．VPCを用いると，ユーザは自分のネットワークの設定を完全に管理下における． S3：AWSのSimple Storage Service(S3)のこと．スケーラブルなストレージサービスで，データをオブジェクトとして保存し，バケットと呼ばれるコンテナに整理する．高可用性(複数リージョンへのレプリケーション)，スケーラビリティ(無制限な容量拡張)，セキュリティ(データ暗号化)などの特徴を持つ． EBS：Elastic Block Storeのこと．高性能かつ耐久性があるストレージで，ボリューム単位で管理され，スナップショットで容易に復元され，複数のアベイラビリティゾーンにレプリケートされて安定した運用が出来る．EC2に接続され，高いパフォーマンスと永続性を兼ね備えるが，基本的に1つのEC2インスタンスにしかアタッチできない． IAM：Identity and Access Managementのこと．AWSのリソースへのアクセス権限を管理するサービス． IAMユーザ：特定の個人やアプリケーションに割り当てられた，直接的に認証情報(アクセスキーやシークレットアクセスキーなど)を持っている存在を指す．恒久的な存在で，常に同じ権限を持ち，アクセス権限に基づいてAWSリソースへアクセスする． IAMロール：一時的に権限を与えられたタスクやユーザの存在を指す．特定のタスクを実行するために一時的に権限を与えられており，AWSアカウント間での安全なアクセスや，複数のエンティティに同じ権限を付与する場合などに使用される． EMR：Elastic MapReduceのこと．AWSが提供するビッグデータ処理サービスで，Apache HadoopやApache Sparkなどのフレームワークを簡単にデプロイして，大量のデータを効率的に処理する． CloudFront：静的・動的コンテンツを迅速かつ素早く配信できるCDNサービスである．初回アクセス時やキャッシュ失効時には，オリジンサーバ(EC2やS3などのサーバ)からコンテンツを取得する．そして世界中に分散したエッジロケーションに配置されたCloudFrontから，キャッシュされたコンテンツを利用すると，配信の高速化やオリジンサーバへの負荷軽減を行う． ECS：Elastic Container Serviceのこと．AWSが提供するフルマネージドなコンテナオーケストレーションサービスで，Dockerコンテナを簡単にデプロイ，管理，スケーリングできる． EFS：Elastic File Systemのこと．フルマネージド型のファイルストレージサービスで，ファイルの共有や保存が可能で，複数のEC2インスタンスからアクセスできる共有ファイルシステムである．スケーラビリティや共有ファイルシステム，耐障害性，使いやすさがある．S3と比較すると，ファイルストレージでありファイル共有が主目的である．(S3はオブジェクトストレージ) CAF：Cloud Adoption Frameworkのこと．クラウドを導入を検討する企業などに対して，効果的な計画を立てるためのサポートを行う．教科書的な，目的に沿ったガイダンスを提供する． Snowball：AWSが提供するデータ転送サービスである．定量のデータを物理的に移動する必要がある場合に便利で，データセンタ間のデータ移動やオフラインのデータ転送に使用される．AWSにデータを転送するための専用のデバイス(HDD)があり，データを書き込みそのHDDを物理的に運送することで，ネットワークで大容量のデータを転送するよりも効率的に，コストの削減も出来る Migration Hub：複数のAWSおよびパートナーのソリューションにまたがるアプリケーション移行の，進捗状況を追跡するための情報を1箇所に集約したダッシュボードを提供するサービス．Migration Hubは，Database Migration ServiceやService Migration Service，CloudEndureなどと統合されている．これによって，Migration Hubを利用すると，移行にどのようなツールが使われていても，個々のアプリケーションの主要なメトリクスと進行状況を取得することができる． AMI：Amazon Machine Imageのこと．AWSが提供する仮想マシンのイメージである．特定の設定・ソフトウェアを含む仮想マシンの完全なスナップショットとして機能する．AMIはOSやアプリケーションソフトウェア，設定などの要素を含み，利用者は新しいEC2インスタンスを素早くデプロイでき，一貫した環境を構築できるテンプレートである．...</p>
-    </section>
-    <section class="post-meta">
-      <div class="post-date">January 26, 2025</div>
-      <div class="post-categories">
-      in 
-        
-        <a href="/category/AWS">Aws</a>
-        
-      
-      </div>
-    </section>
-  </li>
-  
   
 </ul> -->
 
@@ -311,11 +321,19 @@
       <a href="/posts/">git</a>  
     </li>
   
+    <li>
+      <a href="/posts/">rust</a>  
+    </li>
+  
 </ul>
 
 <!-- 最新記事リスト -->
 <h2>最新記事</h2>
 <ul>
+  
+    <li>
+      <a href="/posts/rust">Rust + WASM環境構築メモ：「Hello world!」を表示するまで</a> - 2025-07-05
+    </li>
   
     <li>
       <a href="/posts/git">gitとjelyllでブログを始める</a> - 2025-06-09
@@ -347,12 +365,14 @@
       <i class="fa fa-angle-double-left fa-stack-1x fa-inverse"></i>
     </span>
 		
-		<span class="page-number">Page 1 of 1</span>
+		<span class="page-number">Page 1 of 2</span>
 		
-		<span class="fa-stack fa-lg">
-      <i class="fa fa-square fa-stack-2x"></i>
-      <i class="fa fa-angle-double-right fa-stack-1x fa-inverse"></i>
-    </span>
+		<a class="newer-posts" href="/page/2/">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-square fa-stack-2x"></i>
+        <i class="fa fa-angle-double-right fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
 		
 	</p>
 </nav>
@@ -399,6 +419,16 @@
 
 	
 	<li class="nav-link"><a href="/typography/">Typography</a>
+	
+
+	
+
+	
+
+	
+
+	
+
 	
 
 	

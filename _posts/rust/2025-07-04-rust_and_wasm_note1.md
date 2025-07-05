@@ -1,14 +1,14 @@
 ---
 layout: post
 title:  "Rust + WASM環境構築メモ：「Hello world!」を表示するまで"
-date:   2025-07-05T18:00:00-00:00
+date:   2025-07-04T18:25:52-05:00
 author: rukaszz
 categories: [rust]
 tags: [environment, rust]
 permalink: /posts/rust
 ---
 
-# rust + WebAssembly本
+# Rust + WebAssembly本
 
 ## 概要
 
