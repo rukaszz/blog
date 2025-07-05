@@ -74,7 +74,6 @@
 	</script>
 </head>
 
-
   <body>
 
     <header class="navigation" role="banner">
@@ -599,6 +598,24 @@ gem update --system
   <li>_site：jekyll用のサーバをローカルで立ち上げた時，jekyllが生成したhtmlファイルなどが格納されるディレクトリ．ブログ用のディレクトリ(myBlog)のコピーが，毎度生成され中身が上書きされる，あるいは生成されるイメージ．ここを触って変更を加えても意味がない</li>
 </ul>
 
+<h3 id="ブログ立ち上げローカル">ブログ立ち上げ(ローカル)</h3>
+
+<p>テンプレートがあるディレクトリまで移動したら，依存関係をインストールしましょう．</p>
+
+<pre><code class="language-Bash">bundle install
+</code></pre>
+
+<p>もしもGemfileが無い場合は，必要なGemを追加する必要がある：</p>
+
+<pre><code class="language-Bash">bundle init
+</code></pre>
+
+<p>ローカルサーバを立ち上げて，定めたURL(おそらく規定だと「http://localhost:4000」)でブログを閲覧する：</p>
+
+<pre><code class="language-Bash">bundle exec jekyll serve
+</code></pre>
+
+
 </article>
 
 
@@ -801,7 +818,9 @@ $(document).ready(function() {
 
 
 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
   </body>
 
 </html>
