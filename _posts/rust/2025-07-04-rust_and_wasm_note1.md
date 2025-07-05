@@ -382,7 +382,7 @@ webpack 5.99.8 compiled successfully in 1900 ms
 
 ```
 
-![compiled successfully]({{ site.baseurl }}/assets/image/rustdone_compile.png)
+![compiled successfully]({{ site.baseurl }}/assets/image/rust/done_compile.png)
 
 rustはコンパイルを通すのが大変(まあ今回はほとんどrust関係ないですが……)．
 
