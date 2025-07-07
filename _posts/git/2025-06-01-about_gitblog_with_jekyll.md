@@ -4,7 +4,7 @@ title:  "gitとjelyllでブログを始める"
 date:   2025-06-08T14:25:52-05:00
 author: rukaszz
 categories: [git]
-tags: [environment, blog]
+tags: [environment, blog, jekyll]
 permalink: /posts/git
 ---
 
@@ -415,3 +415,54 @@ bundle init
 bundle exec jekyll serve
 ```
 
+### シンタックスハイライト
+
+おおよそのテンプレートにはシンタックスハイライトのための設定箇所があります．そのような設定はほとんど「_config.yml」に書かれていますので，確認します：
+
+```yml
+# Build settings
+highlightjs_theme: "monokai-sublime"
+highlighter: rouge
+```
+
+このような記述があるかと思います．一般的なJekyllテーマはRougeを使っているみたいですが，「highlightjs_theme」と書かれているならJavaScriptベースのハイライタを使うのもありです．違いとしてはおおよそ次の感じです：
+
+| ハイライタ | オプション | 使用方法 | 備考 |
+| ---- | ---- | ---- | ---- |
+| Rouge | highliter: rouge | CSSを生成して読み込む | Jekyll組み込みらしい |
+| highlight.js | highlight.js + highlight_theme | CDNやローカルでJS/CSSを読み込む | JSでテーマが豊富 |
+
+#### コードブロックにシンタックスハイライトを適用する方法
+
+テンプレートにhighlight.jsを読み込みます：
+
+**/_layouts/default.html**
+
+```HTML
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+  <body>
+
+    {% include header.html %}
+
+    <div class="page-content">
+        {{ content }}
+    </div>
+
+    {% include footer.html %}
+    <!-- for syntax highlight -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+
+</html>
+```
+
+記述する場所は「include head.html」の下か，「include footer.html」の下になると思います．個人的には，footer下に記述したほうがページの描画が終わった後にスクリプトが読み込み・実行されるため，パフォーマンス的に良いのではないかと思います．ただ静的なページなので気休め程度だと思いますが．
+
+なお，「_config.yml」に「highlights_theme」が指定されていますが，これはJekyllに直接作用するわけではなく，宣言だけしている状態に近いです．つまり，「link」タグを用いた記述がテンプレートに用意されているならば，JekyllがCDNリンクなどを挿入してくれる，ということです．
+
+以上です．
