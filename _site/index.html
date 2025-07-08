@@ -105,6 +105,8 @@
 	
 
 	
+
+	
 	<li class="nav-link"><a href="/about/">About</a>
 	
 
@@ -118,6 +120,12 @@
 
 	
 	<li class="nav-link"><a href="/typography/">Typography</a>
+	
+
+	
+
+	
+
 	
 
 	
@@ -192,6 +200,28 @@
   
   <li>
     <h2>
+      <a class="post-link" href="/posts/git">git detached HEADへの対処法</a>
+    </h2>
+    <section class="post-excerpt" itemprop="description">
+      <p>detached HEAD状態の解消 detached HEAD状態とは HEADとは現在作業している場所(ブランチあるいはコミット)を指す言葉であり，ポインタである． a1b2c3 HEAD@{0}: commit: Initial commit という状態の場合，HEAD@{0}→main→a1b2c3という順番であり，「HEAD@{0}時点でのmainブランチで，コミットIDがa1b2c3である」ということです． メインブランチ(例：masterなど)から派生した，分離したmainブランチが作業用のブランチであり，それがコミットされていくという状態です． ではdetached HEADとは何か． ~$ git status 現在どのブランチ上でもありません。 nothing to commit, working tree clean ふとGitで現在の状況を確認すると，上記の状態になってしまうことがあったりします． これはdetachedという単語が表す通り，HEADが切り離された状態であり，HEADがブランチではなく特定のコミットに紐付いている状態です，例えば「git checkout 」でコミットIDを指定してチェックアウトすると，HEADはそのコミットに向いている状態です．関係としては「HEAD→a1b2c3」であり，どのブランチにも属していないということです． 注意点 detached HEAD状態の何が問題かと言うと，このHEADは浮いた状態であり，あくまでも特定のコミットをそのまま抜き出した状態に近いです．例えば作業中にある別のブランチに切り替えたとします．するとこの浮いたHEADにはおそらく戻れなくなります．ガベージコレクションが働いて，detached状態のHEADが消えてしまいます． detached状態でも，ファイルの編集やコミットを行うことは出来ますし，作業上特に不便なことはありません．しかし特定のブランチに所属していない都合上，ブランチの状態をリモートブランチへpushすることや，コミット内容がブランチへ記録されることもないです．つまりdetached HEADを持っている作業者以外から，当該HEADは見えていません． 逆にこれを活用して，過去のコミット状態を一時的に確認したい場合や，履歴を汚染せずに実験的な変更を試す場合などには有用であるとも言えます． 解消方法 意図せずdetached HEAD状態になってしまうと，バージョン管理がなされず，あるときコミット履歴を含めて消えてしまう可能性があります．そのため，解消する必要があります．解消方法としては，そのHEADをブランチ化してしまう方法があります： # -c オプションはブランチの新規作成 git switch -c new_branch_name これによって，新しいブランチがメインブランチから切られた状態で，作業を進めることが出来ます． 本来のブランチへ合流する 意図せずdetached HEAD状態になった場合，元々作業していたブランチへ合流させたいこともあると思います．そのような場合は，仮のブランチを一時的に切って，それを元のブランチの最新コミットとして，元のブランチを更新する方法があります．ここでは復帰したいブランチ名をmainとして進めていきます． まずはdetached HEADをブランチ化します：...</p>
+    </section>
+    <section class="post-meta">
+      <div class="post-date">July 6, 2025</div>
+      <div class="post-categories">
+      in 
+        
+        <a href="/category/git">Git</a>
+        
+      
+      </div>
+    </section>
+  </li>
+  
+  <hr>
+  
+  
+  <li>
+    <h2>
       <a class="post-link" href="/posts/rust">Rust + WASM環境構築メモ：「Hello world!」を表示するまで</a>
     </h2>
     <section class="post-excerpt" itemprop="description">
@@ -239,7 +269,7 @@
       <a class="post-link" href="/posts/git">gitの備忘録的ノート</a>
     </h2>
     <section class="post-excerpt" itemprop="description">
-      <p>Gitについて Gitとは バージョン管理システム(Version Control System；VCS)の一種．簡単に言えばある状態でのディレクトリのファイルの情報を管理し，変更があればそれを追跡してくれるシステムです．これを用いれば管理されているファイル群の変更履歴が追跡され，過去の修正が参照できるようになります．つまり，ある時点でのバックアップファイルを取る手間をなくせます． 分散型のバージョン管理システムであり，有名なSubVersion(SVN)が中央集権的なバージョン管理システムなのに対して，分散型であるという点が異なっております． バージョン管理システム(VCS) 重複しますが，ファイルやディレクトリのバージョン管理をするためのシステムです．変更管理用のサーバなどにSVNやGitなどが置かれると，そこへソースコードなどをアップロードします．すると大勢の人間が参照できるようになります． VCSを使わずに，共有用ファイルサーバでプロジェクトを管理するとします．ここで考えられるのは，変更をどのように管理するかという問題です． 誰も彼もがソースコードを触ってしまうとそもそもどれを現在のバージョンとすればよいか 過去用のバックアップデータをどれだけ作ればよいか 過去のデータが編集されてしまったら，どうすればよいか VCSはこのような問題を解決する1つの手段です． 開発者達をクライアントとして，VCSのサーバとやり取りをすると，それぞれがファイルへ加えた変更をVCSが管理してくれます．このように変更履歴を管理すると，上記の問題が解決できます． 誰も彼もがソースコードを触ってしまう→VCSのサーバに上がっている最新の修正のものが常に正となる 過去用のバックアップデータをどれだけ作ればよいか→変更履歴からどんな修正がされたかを追える(ディレクトリのまるごとバックアップをしなくて良い) 過去のデータが編集されてしまったら→変更履歴で管理されそもそも過去のデータが容易に変更できない VCSの利点は使っていけばすぐに理解できると思います Gitでレポジトリを切る gitアカウントを作る VCSでよく出る用語 VCSで共通して使われる言葉や概念を説明する． 差分(変更履歴) 簡単に言えばどの様に変更されているかを(視覚的に)表示するやつ． 例として，最初に「hello world」を表示するソースコードがあったとします： #include &lt;stdio.h&gt; int main(void){ printf("hello world!"); return 0; } このソースに別の開発者が変更を加えたとします．すると加えた変更が次のように表示されます： - #include &lt;stdio.h&gt; + #include &lt;iostream&gt; int main(void){ - printf("hello world!"); + std::cout &lt;&lt;...</p>
+      <p>Gitについて Gitとは バージョン管理システム(Version Control System；VCS)の一種．簡単に言えばある状態でのディレクトリのファイルの情報を管理し，変更があればそれを追跡してくれるシステムです．これを用いれば管理されているファイル群の変更履歴が追跡され，過去の修正が参照できるようになります．つまり，ある時点でのバックアップファイルを取る手間をなくせます． 分散型のバージョン管理システムであり，有名なSubVersion(SVN)が中央集権的なバージョン管理システムなのに対して，分散型であるという点が異なっております． バージョン管理システム(VCS) ファイルやディレクトリのバージョン管理をするためのシステムです．変更管理用のサーバにSVNやGitなどが置かれると，そこへソースコードなどをアップロードします．すると大勢の人間が参照できるようになります． VCSを使わずに，共有用ファイルサーバでプロジェクトを管理するとします．ここで考えられるのは，変更をどのように管理するかという問題です． 誰も彼もがソースコードを触ってしまうとそもそもどれを現在のバージョンとすればよいか 過去用のバックアップデータをどれだけ作ればよいか 過去のデータが編集されてしまったら，どうすればよいか VCSはこのような問題を解決する1つの手段です． 開発者達をクライアントとして，VCSのサーバとやり取りをすると，それぞれがファイルへ加えた変更をVCSが管理してくれます．このように変更履歴を管理すると，上記の問題が解決できます． 誰も彼もがソースコードを触ってしまう→VCSのサーバに上がっている最新の修正のものが常に正となる 過去用のバックアップデータをどれだけ作ればよいか→変更履歴からどんな修正がされたかを追える(ディレクトリのまるごとバックアップをしなくて良い) 過去のデータが編集されてしまったら→変更履歴で管理されそもそも過去のデータが容易に変更できない VCSの利点は使っていけばすぐに理解できると思います Gitでレポジトリ管理を始める Githubでレポジトリを切る gitアカウントを作る 右上の「New repository」を選ぶ 各項目を入力 Repository name：作るレポジトリの名前 Description：任意項目．レポジトリの説明を書く Public/Private：一般に公開するか否か Create repositoryを選ぶ README(任意) .gitignore(任意) ローカルにGitレポジトリを作成する 前節でGithubにレポジトリを作ったら，次はローカルにGitレポジトリを作って管理する体制を作ります． # 管理するレポジトリへ移動 cd ~/myProject # Git初期化 git ini # ファイルを追加してコミット(初回コミット) # ディレクトリにあるファイル群を全て管理下へ git add . #...</p>
     </section>
     <section class="post-meta">
       <div class="post-date">June 2, 2025</div>
@@ -269,28 +299,6 @@
       in 
         
         <a href="/category/Docker">Docker</a>
-        
-      
-      </div>
-    </section>
-  </li>
-  
-  <hr>
-  
-  
-  <li>
-    <h2>
-      <a class="post-link" href="/posts/cpp">C++ の環境構築</a>
-    </h2>
-    <section class="post-excerpt" itemprop="description">
-      <p>vscodeでC++コーディング環境を構築する Ubuntu環境でC++コーディング環境を構築する方法メモ．メモ書き程度ですが，参考になれば幸いです． 1. 準備 そもそも単純なC++環境であれば，Linux系OSでの環境構築は簡単だと思います．単に標準ライブラリ(iostreamなど)を使う場合は，vscodeに以下の拡張機能があれば，不自由なくコンパイルから実行まで行けるはずです． C/C++(Microsoft)：シンタックスハイライトや文法ミスを指摘してくれる Code Runner(Jun Han)：vscode右上辺りに実行ボタンとか出現する 今回は，外部ライブラリ(boostなど)を使用したい場合を想定しています．vcpkgを用いてパッケージをインストールした場合を解説します． vcpkgはMicrosoft社開発のパッケージマネージャで，簡単にライブラリをインストールして管理できます．これとCMakeを利用して，実行ファイルをBuildする方法を見ていきます．必要な拡張機能は，上記のものに加えて次の3点です： CMake Tools(Microsoft)：CMakeを使用してビルドする際に，vcpkgを通じてインストールしたライブラリを組み込める CMake(twxs)：CMakeファイル用のシンタックスハイライトなどの機能を提供します C++デバッグ系拡張機能：IDEのようなデバッグを行えるような拡張機能(調査中) ひとまずこれら拡張機能をインストールしたら，vscodeを再起動しておきましょう． Ctrl + Shift + P でコマンドパレットを起動して，”Developer: Reload Window”を選ぶと起動中のvscodeウィンドウが開き直されます(他にも起動しているなら，killなりした方がいいでしょう)． 2. プロジェクト用ディレクトリを作成する まずはC++を用いたプログラミングを行うためのディレクトリを切りましょう． ~$ mkdir cpp_Project このディレクトリで”main.cpp”を作成し，vscodeでディレクトリごと開きましょう(ドラッグアンドドロップで行けるはず)． その後，簡単に次のようなコーディングを行い，実行までがうまく行くことを確認しておきます： #include &lt;iostream&gt; using namespace std; int main(){ cout &lt;&lt; "Hello_World!" &lt;&lt; endl; } 3. vcpkgの設定 まずはvcpkgのインストールを行います． git clone...</p>
-    </section>
-    <section class="post-meta">
-      <div class="post-date">May 2, 2025</div>
-      <div class="post-categories">
-      in 
-        
-        <a href="/category/cpp">Cpp</a>
         
       
       </div>
@@ -329,6 +337,10 @@
 <!-- 最新記事リスト -->
 <h2>最新記事</h2>
 <ul>
+  
+    <li>
+      <a href="/posts/git">git detached HEADへの対処法</a> - 2025-07-06
+    </li>
   
     <li>
       <a href="/posts/rust">Rust + WASM環境構築メモ：「Hello world!」を表示するまで</a> - 2025-07-05
@@ -405,6 +417,8 @@
 	
 
 	
+
+	
 	<li class="nav-link"><a href="/about/">About</a>
 	
 
@@ -418,6 +432,12 @@
 
 	
 	<li class="nav-link"><a href="/typography/">Typography</a>
+	
+
+	
+
+	
+
 	
 
 	
@@ -547,6 +567,7 @@ $(document).ready(function() {
 
 
 
+    <!-- for syntax highlight -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai-sublime.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>

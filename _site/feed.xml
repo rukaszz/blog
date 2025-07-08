@@ -6,9 +6,23 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 05 Jul 2025 19:03:29 +0900</pubDate>
-    <lastBuildDate>Sat, 05 Jul 2025 19:03:29 +0900</lastBuildDate>
+    <pubDate>Tue, 08 Jul 2025 22:34:03 +0900</pubDate>
+    <lastBuildDate>Tue, 08 Jul 2025 22:34:03 +0900</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>git detached HEADへの対処法</title>
+        <description>&lt;h1 id=&quot;detached-head状態の解消&quot;&gt;detached HEAD状態の解消&lt;/h1&gt; &lt;h2 id=&quot;detached-head状態とは&quot;&gt;detached HEAD状態とは&lt;/h2&gt; &lt;p&gt;HEADとは現在作業している場所(ブランチあるいはコミット)を指す言葉であり，ポインタである．&lt;/p&gt; &lt;p&gt;&lt;strong&gt;a1b2c3 HEAD@{0}: commit: Initial commit&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;という状態の場合，HEAD@{0}→main→a1b2c3という順番であり，「HEAD@{0}時点でのmainブランチで，コミットIDがa1b2c3である」ということです． メインブランチ(例：masterなど)から派生した，分離したmainブランチが作業用のブランチであり，それがコミットされていくという状態です． ではdetached HEADとは何か．&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;~$ git status 現在どのブランチ上でもありません。 nothing to commit, working tree clean &lt;/code&gt;&lt;/pre&gt; &lt;p&gt;ふとGitで現在の状況を確認すると，上記の状態になってしまうことがあったりします． これはdetachedという単語が表す通り，HEADが切り離された状態であり，HEADがブランチではなく特定のコミットに紐付いている状態です，例えば「git...</description>
+        <pubDate>Sun, 06 Jul 2025 04:25:52 +0900</pubDate>
+        <link>http://localhost:4000/posts/git</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/git</guid>
+        
+        <category>git</category>
+        
+        
+        <category>git</category>
+        
+      </item>
     
       <item>
         <title>Rust + WASM環境構築メモ：「Hello world!」を表示するまで</title>
@@ -37,6 +51,8 @@
         
         <category>blog</category>
         
+        <category>jekyll</category>
+        
         
         <category>git</category>
         
@@ -44,7 +60,7 @@
     
       <item>
         <title>gitの備忘録的ノート</title>
-        <description>&lt;h1 id=&quot;gitについて&quot;&gt;Gitについて&lt;/h1&gt; &lt;h2 id=&quot;gitとは&quot;&gt;Gitとは&lt;/h2&gt; &lt;p&gt;バージョン管理システム(Version Control System；VCS)の一種．簡単に言えばある状態でのディレクトリのファイルの情報を管理し，変更があればそれを追跡してくれるシステムです．これを用いれば管理されているファイル群の変更履歴が追跡され，過去の修正が参照できるようになります．つまり，ある時点でのバックアップファイルを取る手間をなくせます．&lt;/p&gt; &lt;p&gt;分散型のバージョン管理システムであり，有名なSubVersion(SVN)が中央集権的なバージョン管理システムなのに対して，分散型であるという点が異なっております．&lt;/p&gt; &lt;h3 id=&quot;バージョン管理システムvcs&quot;&gt;バージョン管理システム(VCS)&lt;/h3&gt; &lt;p&gt;重複しますが，ファイルやディレクトリのバージョン管理をするためのシステムです．変更管理用のサーバなどにSVNやGitなどが置かれると，そこへソースコードなどをアップロードします．すると大勢の人間が参照できるようになります．&lt;/p&gt; &lt;p&gt;VCSを使わずに，共有用ファイルサーバでプロジェクトを管理するとします．ここで考えられるのは，変更をどのように管理するかという問題です．&lt;/p&gt; &lt;ul&gt; &lt;li&gt;誰も彼もがソースコードを触ってしまうとそもそもどれを現在のバージョンとすればよいか&lt;/li&gt; &lt;li&gt;過去用のバックアップデータをどれだけ作ればよいか&lt;/li&gt; &lt;li&gt;過去のデータが編集されてしまったら，どうすればよいか&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;VCSはこのような問題を解決する1つの手段です． 開発者達をクライアントとして，VCSのサーバとやり取りをすると，それぞれがファイルへ加えた変更をVCSが管理してくれます．このように変更履歴を管理すると，上記の問題が解決できます．&lt;/p&gt; &lt;ul&gt; &lt;li&gt;誰も彼もがソースコードを触ってしまう→VCSのサーバに上がっている最新の修正のものが常に正となる&lt;/li&gt; &lt;li&gt;過去用のバックアップデータをどれだけ作ればよいか→変更履歴からどんな修正がされたかを追える(ディレクトリのまるごとバックアップをしなくて良い)&lt;/li&gt; &lt;li&gt;過去のデータが編集されてしまったら→変更履歴で管理されそもそも過去のデータが容易に変更できない&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;VCSの利点は使っていけばすぐに理解できると思います&lt;/p&gt; &lt;h2 id=&quot;gitでレポジトリを切る&quot;&gt;Gitでレポジトリを切る&lt;/h2&gt; &lt;ol&gt; &lt;li&gt;gitアカウントを作る&lt;/li&gt; &lt;li&gt;&lt;/li&gt;...</description>
+        <description>&lt;h1 id=&quot;gitについて&quot;&gt;Gitについて&lt;/h1&gt; &lt;h2 id=&quot;gitとは&quot;&gt;Gitとは&lt;/h2&gt; &lt;p&gt;バージョン管理システム(Version Control System；VCS)の一種．簡単に言えばある状態でのディレクトリのファイルの情報を管理し，変更があればそれを追跡してくれるシステムです．これを用いれば管理されているファイル群の変更履歴が追跡され，過去の修正が参照できるようになります．つまり，ある時点でのバックアップファイルを取る手間をなくせます．&lt;/p&gt; &lt;p&gt;分散型のバージョン管理システムであり，有名なSubVersion(SVN)が中央集権的なバージョン管理システムなのに対して，分散型であるという点が異なっております．&lt;/p&gt; &lt;h3 id=&quot;バージョン管理システムvcs&quot;&gt;バージョン管理システム(VCS)&lt;/h3&gt; &lt;p&gt;ファイルやディレクトリのバージョン管理をするためのシステムです．変更管理用のサーバにSVNやGitなどが置かれると，そこへソースコードなどをアップロードします．すると大勢の人間が参照できるようになります．&lt;/p&gt; &lt;p&gt;VCSを使わずに，共有用ファイルサーバでプロジェクトを管理するとします．ここで考えられるのは，変更をどのように管理するかという問題です．&lt;/p&gt; &lt;ul&gt; &lt;li&gt;誰も彼もがソースコードを触ってしまうとそもそもどれを現在のバージョンとすればよいか&lt;/li&gt; &lt;li&gt;過去用のバックアップデータをどれだけ作ればよいか&lt;/li&gt; &lt;li&gt;過去のデータが編集されてしまったら，どうすればよいか&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;VCSはこのような問題を解決する1つの手段です． 開発者達をクライアントとして，VCSのサーバとやり取りをすると，それぞれがファイルへ加えた変更をVCSが管理してくれます．このように変更履歴を管理すると，上記の問題が解決できます．&lt;/p&gt; &lt;ul&gt; &lt;li&gt;誰も彼もがソースコードを触ってしまう→VCSのサーバに上がっている最新の修正のものが常に正となる&lt;/li&gt; &lt;li&gt;過去用のバックアップデータをどれだけ作ればよいか→変更履歴からどんな修正がされたかを追える(ディレクトリのまるごとバックアップをしなくて良い)&lt;/li&gt; &lt;li&gt;過去のデータが編集されてしまったら→変更履歴で管理されそもそも過去のデータが容易に変更できない&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;VCSの利点は使っていけばすぐに理解できると思います&lt;/p&gt; &lt;h2 id=&quot;gitでレポジトリ管理を始める&quot;&gt;Gitでレポジトリ管理を始める&lt;/h2&gt; &lt;h3 id=&quot;githubでレポジトリを切る&quot;&gt;Githubでレポジトリを切る&lt;/h3&gt; &lt;ol&gt;...</description>
         <pubDate>Mon, 02 Jun 2025 04:25:52 +0900</pubDate>
         <link>http://localhost:4000/posts/git</link>
         <guid isPermaLink="true">http://localhost:4000/posts/git</guid>

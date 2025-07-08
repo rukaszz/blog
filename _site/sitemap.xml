@@ -25,6 +25,10 @@
 <lastmod>2025-07-05T08:25:52+09:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/posts/git</loc>
+<lastmod>2025-07-06T04:25:52+09:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/posts/aws</loc>
 </url>
 <url>
@@ -41,6 +45,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/posts/rust</loc>
+</url>
+<url>
+<loc>http://localhost:4000/posts/git</loc>
 </url>
 <url>
 <loc>http://localhost:4000/about/</loc>
@@ -61,7 +68,13 @@
 <loc>http://localhost:4000/tag/blog/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/tag/jekyll/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/tag/rust/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/tag/git/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/category/aws/</loc>
@@ -83,6 +96,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/2025/07/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/2025/07/06/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/2025/07/05/</loc>

@@ -105,6 +105,8 @@
 	
 
 	
+
+	
 	<li class="nav-link"><a href="/about/">About</a>
 	
 
@@ -118,6 +120,12 @@
 
 	
 	<li class="nav-link"><a href="/typography/">Typography</a>
+	
+
+	
+
+	
+
 	
 
 	
@@ -192,6 +200,28 @@
   
   <li>
     <h2>
+      <a class="post-link" href="/posts/cpp">C++ の環境構築</a>
+    </h2>
+    <section class="post-excerpt" itemprop="description">
+      <p>vscodeでC++コーディング環境を構築する Ubuntu環境でC++コーディング環境を構築する方法メモ．メモ書き程度ですが，参考になれば幸いです． 1. 準備 そもそも単純なC++環境であれば，Linux系OSでの環境構築は簡単だと思います．単に標準ライブラリ(iostreamなど)を使う場合は，vscodeに以下の拡張機能があれば，不自由なくコンパイルから実行まで行けるはずです． C/C++(Microsoft)：シンタックスハイライトや文法ミスを指摘してくれる Code Runner(Jun Han)：vscode右上辺りに実行ボタンとか出現する 今回は，外部ライブラリ(boostなど)を使用したい場合を想定しています．vcpkgを用いてパッケージをインストールした場合を解説します． vcpkgはMicrosoft社開発のパッケージマネージャで，簡単にライブラリをインストールして管理できます．これとCMakeを利用して，実行ファイルをBuildする方法を見ていきます．必要な拡張機能は，上記のものに加えて次の3点です： CMake Tools(Microsoft)：CMakeを使用してビルドする際に，vcpkgを通じてインストールしたライブラリを組み込める CMake(twxs)：CMakeファイル用のシンタックスハイライトなどの機能を提供します C++デバッグ系拡張機能：IDEのようなデバッグを行えるような拡張機能(調査中) ひとまずこれら拡張機能をインストールしたら，vscodeを再起動しておきましょう． Ctrl + Shift + P でコマンドパレットを起動して，”Developer: Reload Window”を選ぶと起動中のvscodeウィンドウが開き直されます(他にも起動しているなら，killなりした方がいいでしょう)． 2. プロジェクト用ディレクトリを作成する まずはC++を用いたプログラミングを行うためのディレクトリを切りましょう． ~$ mkdir cpp_Project このディレクトリで”main.cpp”を作成し，vscodeでディレクトリごと開きましょう(ドラッグアンドドロップで行けるはず)． その後，簡単に次のようなコーディングを行い，実行までがうまく行くことを確認しておきます： #include &lt;iostream&gt; using namespace std; int main(){ cout &lt;&lt; "Hello_World!" &lt;&lt; endl; } 3. vcpkgの設定 まずはvcpkgのインストールを行います． git clone...</p>
+    </section>
+    <section class="post-meta">
+      <div class="post-date">May 2, 2025</div>
+      <div class="post-categories">
+      in 
+        
+        <a href="/category/cpp">Cpp</a>
+        
+      
+      </div>
+    </section>
+  </li>
+  
+  <hr>
+  
+  
+  <li>
+    <h2>
       <a class="post-link" href="/posts/aws">AWS用語集</a>
     </h2>
     <section class="post-excerpt" itemprop="description">
@@ -241,6 +271,10 @@
 <!-- 最新記事リスト -->
 <h2>最新記事</h2>
 <ul>
+  
+    <li>
+      <a href="/posts/git">git detached HEADへの対処法</a> - 2025-07-06
+    </li>
   
     <li>
       <a href="/posts/rust">Rust + WASM環境構築メモ：「Hello world!」を表示するまで</a> - 2025-07-05
@@ -319,6 +353,8 @@
 	
 
 	
+
+	
 	<li class="nav-link"><a href="/about/">About</a>
 	
 
@@ -332,6 +368,12 @@
 
 	
 	<li class="nav-link"><a href="/typography/">Typography</a>
+	
+
+	
+
+	
+
 	
 
 	
@@ -461,6 +503,7 @@ $(document).ready(function() {
 
 
 
+    <!-- for syntax highlight -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai-sublime.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
